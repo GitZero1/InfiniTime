@@ -436,6 +436,7 @@ list(APPEND SOURCE_FILES
         displayapp/screens/Alarm.cpp
         displayapp/screens/Styles.cpp
         displayapp/Colors.cpp
+        displayapp/screens/ZeroApp.cpp
 
         ## Settings
         displayapp/screens/settings/QuickSettings.cpp
