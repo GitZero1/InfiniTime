@@ -65,6 +65,7 @@ namespace Pinetime {
         lv_obj_t* stepIcon;
         lv_obj_t* stepValue;
         lv_obj_t* notificationIcon;
+        lv_obj_t* img_background;
 
         Controllers::DateTime& dateTimeController;
         Controllers::Battery& batteryController;
@@ -75,6 +76,8 @@ namespace Pinetime {
         Controllers::MotionController& motionController;
 
         lv_task_t* taskRefresh;
+
+        
       };
     }
   }

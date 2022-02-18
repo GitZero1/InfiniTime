@@ -13,7 +13,15 @@
 #include "components/heartrate/HeartRateController.h"
 #include "components/motion/MotionController.h"
 #include "components/settings/Settings.h"
+#include "displayapp/icons/ZeroFace/stepsIcon.cpp"
+//#include "displayapp/icons/ZeroFace/Strawhat.cpp"
+#include "displayapp/icons/ZeroFace/goingMerry2.cpp"
+
 using namespace Pinetime::Applications::Screens;
+
+inline void lv_img_set_src_arr(lv_obj_t* img, const lv_img_dsc_t* src_img) {
+  lv_img_set_src(img, src_img);
+}
 
 WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
                                    Controllers::DateTime& dateTimeController,
@@ -34,37 +42,43 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
     motionController {motionController} {
   settingsController.SetClockFace(0);
 
+  
+  img_background = lv_img_create(lv_scr_act(), nullptr);
+  lv_img_set_src_arr(img_background, &IgoingMerry);
+  lv_obj_align(img_background, nullptr, LV_ALIGN_CENTER, 0, 0);
+  //lv_img_set_zoom(img_background, 512);
+  
   batteryIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_label_set_text_static(batteryIcon, Symbols::batteryFull);
-  lv_obj_align(batteryIcon, lv_scr_act(), LV_ALIGN_IN_TOP_RIGHT, 0, 0);
+  lv_obj_align(batteryIcon, lv_scr_act(), LV_ALIGN_IN_TOP_LEFT, 0, 0);
 
   batteryPlug = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(batteryPlug, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0xFF0000));
   lv_label_set_text_static(batteryPlug, Symbols::plug);
-  lv_obj_align(batteryPlug, batteryIcon, LV_ALIGN_OUT_LEFT_MID, -5, 0);
+  lv_obj_align(batteryPlug, batteryIcon, LV_ALIGN_OUT_RIGHT_MID, 5, 0);
 
   bleIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(bleIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x0082FC));
   lv_label_set_text_static(bleIcon, Symbols::bluetooth);
-  lv_obj_align(bleIcon, batteryPlug, LV_ALIGN_OUT_LEFT_MID, -5, 0);
+  lv_obj_align(bleIcon, batteryPlug, LV_ALIGN_OUT_RIGHT_MID, 5, 0);
 
   notificationIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(notificationIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x00FF00));
   lv_label_set_text_static(notificationIcon, NotificationIcon::GetIcon(false));
-  lv_obj_align(notificationIcon, nullptr, LV_ALIGN_IN_TOP_LEFT, 0, 0);
-
-  label_date = lv_label_create(lv_scr_act(), nullptr);
-  lv_obj_align(label_date, lv_scr_act(), LV_ALIGN_CENTER, 0, 60);
-  lv_obj_set_style_local_text_color(label_date, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x999999));
+  lv_obj_align(notificationIcon, nullptr, LV_ALIGN_IN_TOP_LEFT, 0, 20);
 
   label_time = lv_label_create(lv_scr_act(), nullptr);
-  lv_obj_set_style_local_text_font(label_time, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_extrabold_compressed);
+  lv_obj_set_style_local_text_font(label_time, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_42);
+  lv_obj_set_style_local_text_color(label_time, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
+  lv_obj_align(label_time, lv_scr_act(), LV_ALIGN_IN_TOP_RIGHT, -5, 5);
 
-  lv_obj_align(label_time, lv_scr_act(), LV_ALIGN_IN_RIGHT_MID, 0, 0);
+  label_date = lv_label_create(lv_scr_act(), nullptr);
+  lv_obj_align(label_date, lv_scr_act(), LV_ALIGN_IN_TOP_RIGHT, -6, 40);
+  lv_obj_set_style_local_text_color(label_date, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x999999));
 
   label_time_ampm = lv_label_create(lv_scr_act(), nullptr);
   lv_label_set_text_static(label_time_ampm, "");
-  lv_obj_align(label_time_ampm, lv_scr_act(), LV_ALIGN_IN_RIGHT_MID, -30, -55);
+  lv_obj_align(label_time_ampm, label_time, LV_ALIGN_OUT_LEFT_TOP, -5, 0);
 
   backgroundLabel = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_click(backgroundLabel, true);
@@ -88,11 +102,25 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
   lv_label_set_text_static(stepValue, "0");
   lv_obj_align(stepValue, lv_scr_act(), LV_ALIGN_IN_BOTTOM_RIGHT, 0, 0);
 
+ 
+
+
+
+
+
+
+  /*
   stepIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(stepIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x00FFE7));
   lv_label_set_text_static(stepIcon, Symbols::shoe);
   lv_obj_align(stepIcon, stepValue, LV_ALIGN_OUT_LEFT_MID, -5, 0);
+  */
 
+  stepIcon = lv_img_create(lv_scr_act(), nullptr);
+  lv_img_set_src_arr(stepIcon, &IsymbolFootIcon);
+  lv_obj_align(stepIcon, stepValue, LV_ALIGN_OUT_LEFT_MID, -5,0);
+
+ 
   taskRefresh = lv_task_create(RefreshTaskCallback, LV_DISP_DEF_REFR_PERIOD, LV_TASK_PRIO_MID, this);
   Refresh();
 }
@@ -165,20 +193,21 @@ void WatchFaceDigital::Refresh() {
         }
         lv_label_set_text(label_time_ampm, ampmChar);
         lv_label_set_text_fmt(label_time, "%2d:%02d", hour, minute);
-        lv_obj_align(label_time, lv_scr_act(), LV_ALIGN_IN_RIGHT_MID, 0, 0);
+        lv_obj_realign(label_time);
+        lv_obj_realign(label_time_ampm);
       } else {
         lv_label_set_text_fmt(label_time, "%02d:%02d", hour, minute);
-        lv_obj_align(label_time, lv_scr_act(), LV_ALIGN_CENTER, 0, 0);
+        lv_obj_realign(label_time);
       }
     }
 
     if ((year != currentYear) || (month != currentMonth) || (dayOfWeek != currentDayOfWeek) || (day != currentDay)) {
       if (settingsController.GetClockType() == Controllers::Settings::ClockType::H24) {
         lv_label_set_text_fmt(
-          label_date, "%s %d %s %d", dateTimeController.DayOfWeekShortToString(), day, dateTimeController.MonthShortToString(), year);
+          label_date, "%s %d %s", dateTimeController.DayOfWeekShortToString(), day, dateTimeController.MonthShortToString());
       } else {
         lv_label_set_text_fmt(
-          label_date, "%s %s %d %d", dateTimeController.DayOfWeekShortToString(), dateTimeController.MonthShortToString(), day, year);
+          label_date, "%s %s %d", dateTimeController.DayOfWeekShortToString(), dateTimeController.MonthShortToString(), day);
       }
       lv_obj_realign(label_date);
 
@@ -212,3 +241,4 @@ void WatchFaceDigital::Refresh() {
     lv_obj_realign(stepIcon);
   }
 }
+
