@@ -42,7 +42,7 @@ std::unique_ptr<Screen> ApplicationList::CreateScreen1() {
   std::array<Screens::Tile::Applications, 6> applications {{
     {Symbols::stopWatch, Apps::StopWatch},
     {Symbols::music, Apps::Music},
-    {"Zero", Apps::ZeroApp},
+    {Symbols::chartLine, Apps::Motion},
     {Symbols::shoe, Apps::Steps},
     {Symbols::heartBeat, Apps::HeartRate},
     {Symbols::hourGlass, Apps::Timer},
@@ -53,10 +53,10 @@ std::unique_ptr<Screen> ApplicationList::CreateScreen1() {
 
 std::unique_ptr<Screen> ApplicationList::CreateScreen2() {
   std::array<Screens::Tile::Applications, 6> applications {{
-    {Symbols::paintbrush, Apps::Paint},
+    {"Zero", Apps::ZeroApp},
+    {"Zero", Apps::ZeroApp},
     {Symbols::paddle, Apps::Paddle},
     {"2", Apps::Twos},
-    {Symbols::chartLine, Apps::Motion},
     {Symbols::drum, Apps::Metronome},
     {Symbols::clock, Apps::Alarm},
   }};

@@ -15,13 +15,13 @@
 #include "displayapp/screens/Clock.h"
 #include "displayapp/screens/FirmwareUpdate.h"
 #include "displayapp/screens/FirmwareValidation.h"
-#include "displayapp/screens/InfiniPaint.h"
+//#include "displayapp/screens/InfiniPaint.h"
 #include "displayapp/screens/Paddle.h"
 #include "displayapp/screens/StopWatch.h"
 #include "displayapp/screens/Meter.h"
 #include "displayapp/screens/Metronome.h"
 #include "displayapp/screens/Music.h"
-#include "displayapp/screens/Navigation.h"
+//#include "displayapp/screens/Navigation.h"
 #include "displayapp/screens/Notifications.h"
 #include "displayapp/screens/SystemInfo.h"
 #include "displayapp/screens/Tile.h"
@@ -448,18 +448,18 @@ void DisplayApp::LoadApp(Apps app, DisplayApp::FullRefreshDirections direction) 
     case Apps::Twos:
       currentScreen = std::make_unique<Screens::Twos>(this);
       break;
-    case Apps::Paint:
+    /*case Apps::Paint:
       currentScreen = std::make_unique<Screens::InfiniPaint>(this, lvgl, motorController);
-      break;
+      break;*/
     case Apps::Paddle:
       currentScreen = std::make_unique<Screens::Paddle>(this, lvgl);
       break;
     case Apps::Music:
       currentScreen = std::make_unique<Screens::Music>(this, systemTask->nimble().music());
       break;
-    case Apps::Navigation:
+    /*case Apps::Navigation:
       currentScreen = std::make_unique<Screens::Navigation>(this, systemTask->nimble().navigation());
-      break;
+      break;*/
     case Apps::HeartRate:
       currentScreen = std::make_unique<Screens::HeartRate>(this, heartRateController, *systemTask);
       break;

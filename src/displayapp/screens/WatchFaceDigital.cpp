@@ -1,5 +1,4 @@
 #include "displayapp/screens/WatchFaceDigital.h"
-
 #include <date/date.h>
 #include <lvgl/lvgl.h>
 #include <cstdio>
@@ -14,8 +13,10 @@
 #include "components/motion/MotionController.h"
 #include "components/settings/Settings.h"
 #include "displayapp/icons/ZeroFace/stepsIcon.cpp"
-//#include "displayapp/icons/ZeroFace/Strawhat.cpp"
-#include "displayapp/icons/ZeroFace/goingMerry2.cpp"
+#include "displayapp/icons/ZeroFace/strawHat.cpp"
+
+
+
 
 using namespace Pinetime::Applications::Screens;
 
@@ -44,8 +45,8 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
 
   
   img_background = lv_img_create(lv_scr_act(), nullptr);
-  lv_img_set_src_arr(img_background, &IgoingMerry);
-  lv_obj_align(img_background, nullptr, LV_ALIGN_CENTER, 0, 0);
+  lv_img_set_src_arr(img_background, &IstrawHat);
+  lv_obj_align(img_background, nullptr, LV_ALIGN_CENTER, 0, 20);
   //lv_img_set_zoom(img_background, 512);
   
   batteryIcon = lv_label_create(lv_scr_act(), nullptr);
@@ -69,7 +70,7 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
 
   label_time = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_font(label_time, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_42);
-  lv_obj_set_style_local_text_color(label_time, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
+  //lv_obj_set_style_local_text_color(label_time, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
   lv_obj_align(label_time, lv_scr_act(), LV_ALIGN_IN_TOP_RIGHT, -5, 5);
 
   label_date = lv_label_create(lv_scr_act(), nullptr);
