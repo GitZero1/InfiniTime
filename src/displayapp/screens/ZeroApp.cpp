@@ -1,13 +1,29 @@
 #include "displayapp/screens/ZeroApp.h"
 #include "displayapp/DisplayApp.h"
 
+#include "components/ble/AlertNotificationService.h"
+
 using namespace Pinetime::Applications::Screens;
 
 ZeroApp::ZeroApp(DisplayApp* app) : Screen(app) {
-  lv_obj_t* title = lv_label_create(lv_scr_act(), nullptr);
-  lv_label_set_text_static(title, "Hello Friend!");
-  lv_label_set_align(title, LV_LABEL_ALIGN_CENTER);
-  lv_obj_align(title, lv_scr_act(), LV_ALIGN_CENTER, 0, 0);
+  button = lv_btn_create(lv_scr_act(), nullptr);
+  lv_obj_align(button, lv_scr_act(), LV_ALIGN_CENTER,0,0);
+
+
+  title = lv_label_create(button, nullptr);
+  lv_label_set_text_static(title, "Push me");
+
+  
+}
+
+void ZeroApp::EventHandler(lv_obj_t* obj, lv_event_t event) {
+  if (event != LV_EVENT_CLICKED) {
+    return;
+  }
+
+  if (obj == button) {
+    //alertNotificationService.HijackService();
+  }
 }
 
 ZeroApp::~ZeroApp() {

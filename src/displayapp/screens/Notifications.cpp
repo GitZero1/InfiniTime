@@ -175,10 +175,11 @@ Notifications::NotificationItem::NotificationItem(const char* title,
   : mode {mode}, alertNotificationService {alertNotificationService} {
   lv_obj_t* container1 = lv_cont_create(lv_scr_act(), NULL);
 
-  lv_obj_set_style_local_bg_color(container1, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x222222));
+  lv_obj_set_style_local_bg_color(container1, LV_CONT_PART_MAIN, LV_STATE_DEFAULT,LV_COLOR_WHITE );//lv_color_hex(0x222222)
   lv_obj_set_style_local_pad_all(container1, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 10);
   lv_obj_set_style_local_pad_inner(container1, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 5);
-  lv_obj_set_style_local_border_width(container1, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
+  lv_obj_set_style_local_border_width(container1, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 2);
+  lv_obj_set_style_local_text_color(container1, LV_CONT_PART_MAIN,LV_STATE_DEFAULT, LV_COLOR_BLACK);;
 
   lv_obj_set_pos(container1, 0, 50);
   lv_obj_set_size(container1, LV_HOR_RES, 190);
